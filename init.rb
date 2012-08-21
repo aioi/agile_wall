@@ -13,5 +13,5 @@ Redmine::Plugin.register :agile_wall do
   end
 
   menu :project_menu, :wall, { :controller => 'wall', :action => 'index' }, 
-      :caption => "Wall", :after => :new_issue
+      :caption => :tab_label, :after => :new_issue
 end
