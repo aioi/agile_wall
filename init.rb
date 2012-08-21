@@ -12,5 +12,6 @@ Redmine::Plugin.register :agile_wall do
     permission :agile_wall, { :wall =>  [:index] }, :public => true 
   end
 
-  menu :project_menu, :wall, { :controller => 'wall', :action => 'index' }, :after => :new_issue
+  menu :project_menu, :wall, { :controller => 'wall', :action => 'index' }, 
+      :caption => "Wall", :after => :new_issue
 end
