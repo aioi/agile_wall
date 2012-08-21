@@ -1,13 +1,11 @@
 <% html_title "Wall" %>
 
-<style>
-</style>
-
 <% @statuses.each do |status| %>
   <div class="column">
     <h1><%= status.name %></h1>
     <% @issues.where(:status_id => status.id).order(:project_id, "issues.id").each do |issue| %>
       <div class="card tracker_<%= issue.tracker_id %>" title="<%= issue.description %>">
+        <%= link_to "##{issue.id}", issue_path(issue.id) %>:
         <%= link_to issue.subject, issue_path(issue.id) %>
       </div>
     <% end %>
