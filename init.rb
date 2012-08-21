@@ -1,6 +1,6 @@
 Redmine::Plugin.register :agile_wall do
   name 'Agile Wall plugin'
-  author 'Aioi Insurance Co. Pty Ltd'
+  author 'Aioi Insurance Co., Pty Ltd'
   description 'Provides a visual agile wall'
   version '0.0.1'
 
