@@ -14,9 +14,8 @@
 
 .card {
   border: 1px solid #aaa; 
-  height: 45px;
+  min-height: 45px;
   margin-bottom: 10px;
-  overflow: hidden;
   padding: 10px;
 }
 
