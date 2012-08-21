@@ -1,0 +1,34 @@
+.column { 
+  float: left;
+  margin: 10px 10px 0 0;
+  padding: 10px;
+  padding-bottom: 0;
+  width: 13%;
+}
+
+.column h1 {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  color:#666;
+}
+
+.card {
+  border: 1px solid #aaa; 
+  height: 45px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.card h1 {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+.card.tracker_1 {
+  background: #def;
+}
+
+.card.tracker_2 {
+  background: #ffd;
+}

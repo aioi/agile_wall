@@ -1,0 +1,17 @@
+<!-- TODO -->
+
+<p>
+  <%= l(:message_budget_settings) %>
+</p>
+
+<p>
+  <label><%= l(:label_non_billable_overhead) %></label><%= text_field_tag 'settings[budget_non_billable_overhead]', @settings['budget_non_billable_overhead'], :size => 15 %>
+</p>
+
+<p>
+  <label><%= l(:label_materials) %></label><%= text_field_tag 'settings[budget_materials]', @settings['budget_materials'], :size => 15 %>
+</p>
+
+<p>
+  <label><%= l(:label_profit) %></label><%= text_field_tag 'settings[budget_profit]', @settings['budget_profit'], :size => 15 %>
+</p>

@@ -1,0 +1,20 @@
+<% html_title t("Wall") %>
+
+<style>
+</style>
+
+<% @statuses.each do |status| %>
+  <div class="column">
+    <h1><%= status.name %></h1>
+    <% @issues.where(:status_id => status.id).order(:project_id, "issues.id").each do |issue| %>
+      <div class="card tracker_<%= issue.tracker_id %>" title="<%= issue.description %>">
+        <%= link_to issue.subject, issue_path(issue.id) %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'jquery-ui/smoothness/jquery-ui-1.8.23.custom.css', 'default', :plugin => 'agile_wall' %>
+    <%= javascript_include_tag 'jquery-ui/jquery-1.8.0.min.js', 'jquery-ui/jquery-ui-1.8.23.custom.min.js', 'default', :plugin => 'agile_wall' %>
+<% end %>
