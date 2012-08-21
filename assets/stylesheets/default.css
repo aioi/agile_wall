@@ -19,15 +19,31 @@
   padding: 10px;
 }
 
-.card h1 {
-  margin-bottom: 10px;
-  font-size: 1.2em;
-}
-
 .card.tracker_1 {
   background: #def;
 }
 
 .card.tracker_2 {
   background: #ffd;
+}
+
+.card.tracker_3 {
+  background: #fdf;
+}
+
+.card.tracker_4 {
+  background: #fdd;
+}
+
+.card h1 {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+.card .gravatar {
+  border: 1px solid #949494;
+  float: right;  
+  margin: -11px -11px 5px 5px;
+  opacity: .7;
+  width: 20px;
 }

@@ -5,6 +5,10 @@
     <h1><%= status.name %></h1>
     <% @issues.where(:status_id => status.id).order(:project_id, "issues.id").each do |issue| %>
       <div class="card tracker_<%= issue.tracker_id %>" title="<%= issue.description %>">
+        <% if Setting["gravatar_enabled"] == "1" %>
+          <% email = issue.assigned_to.try(:mail) %>
+          <%= gravatar(email) if email %>
+        <% end %>
         <%= link_to "##{issue.id}", issue_path(issue.id) %>:
         <%= link_to issue.subject, issue_path(issue.id) %>
       </div>
