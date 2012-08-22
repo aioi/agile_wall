@@ -1,5 +1,14 @@
 <% html_title t(:tab_label) %>
 
+<% @trackers.each do |tracker| %>
+  <div class="key">
+    <div class="swatch tracker_<%= tracker.id %>"></div>
+    <%= tracker.name %>
+  </div>
+<% end %>
+
+<div class="clear"></div>
+
 <% @statuses.each do |status| %>
   <div class="column">
     <h1><%= status.name %></h1>

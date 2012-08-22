@@ -7,9 +7,10 @@ class WallController < ApplicationController
     @project = Project.find(params[:id])
     @projects = @project.self_and_descendants
     @statuses = IssueStatus.where(:is_closed => false).order(:position)
+    @trackers = get_valid_trackers
     @issues = Issue.open.where(
         :project_id => @projects.pluck(:id), 
-        :tracker_id => get_valid_trackers.pluck(:id)
+        :tracker_id => @trackers.pluck(:id)
       )
   end
 
