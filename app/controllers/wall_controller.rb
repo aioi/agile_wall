@@ -18,12 +18,12 @@ private
 
   def get_settings
     @settings = Setting.plugin_agile_wall
-    @settings["excluded_trackers"] = @settings["excluded_trackers"].split(",")
+    @settings["excluded_trackers"] = @settings["excluded_trackers"].try(:split, ",")
   end
 
   def get_valid_trackers
     if @settings["excluded_trackers"].blank?
-      Tracker.all
+      Tracker.scoped
     else
       t = Tracker.arel_table
       Tracker.where(t[:name].not_in(@settings["excluded_trackers"]))

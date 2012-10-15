@@ -5,7 +5,7 @@ Redmine::Plugin.register :agile_wall do
   version '0.0.1'
 
   settings :default => {
-    'excluded_trackers' => 'Support'
+    # 'excluded_trackers' => 'Support'
   } #, :partial => 'settings/budget_settings'
 
   project_module :agile_wall do
