@@ -21,8 +21,8 @@ private
   end
 
   def get_project_members
-    members = @project.self_and_descendants.flat_map { |project| project.users }
-    members.uniq.sort { |a, b| a.name <=> b.name }
+    members = @project.self_and_descendants.map { |project| project.users }
+    members.flatten.uniq.sort { |a, b| a.name <=> b.name }
   end
 
   def get_project
