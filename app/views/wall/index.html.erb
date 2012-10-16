@@ -6,7 +6,7 @@
                           options_from_collection_for_select(@projects, "identifier", "name", @selected_project.try(:identifier)), 
                           :include_blank => true,
                           :onchange => "$('#filter_form').submit();" %> 
-  or user <%= select_tag "user", 
+  or assignee <%= select_tag "user", 
                 options_from_collection_for_select(@users, "login", "name", @selected_user.try(:login)), 
                 :include_blank => true,
                 :onchange => "$('#filter_form').submit();" %>
