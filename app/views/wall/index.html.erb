@@ -1,5 +1,13 @@
 <% html_title t(:tab_label) %>
 
+<%= form_tag({}, {:id => 'filter_form', :method => :get}) do %>
+  <%= hidden_field_tag 'id', @project.identifier %>
+  Filter on user: <%= select_tag "user", 
+                      options_from_collection_for_select(@users, "login", "name", @selected_user.try(:login)), 
+                      :include_blank => true,
+                      :onchange => "$('#filter_form').submit();" %>
+<% end %>
+
 <% @trackers.each do |tracker| %>
   <div class="key">
     <div class="swatch tracker_<%= tracker.id %>"></div>
@@ -12,7 +20,7 @@
 <% @statuses.each do |status| %>
   <div class="column">
     <h1><%= status.name %></h1>
-    <% @issues.where(:status_id => status.id).order(:project_id, "issues.id").each do |issue| %>
+    <% filter_issues_by_status(status).each do |issue| %>
       <div class="card tracker_<%= issue.tracker_id %>" title="<%= issue.description %>">
         <% if Setting["gravatar_enabled"] == "1" %>
           <% email = issue.assigned_to.try(:mail) %>
