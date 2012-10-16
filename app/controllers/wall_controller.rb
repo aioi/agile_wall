@@ -4,27 +4,23 @@ class WallController < ApplicationController
   before_filter :get_projects, :get_settings
 
   def index
-    @users = get_project_members
-    @selected_user = User.where(:login => params[:user]).first unless params[:user].blank?
+    @selected_user = Principal.find(params[:user]) unless params[:user].blank?
     @selected_project = @projects.where(:identifier => params[:project]).first unless params[:project].blank?
     @trackers = get_valid_trackers
-    @issues = get_filtered_issues(@trackers, @selected_project, @selected_user)
+    @issues, @users = get_issues_and_assignees(@trackers, @selected_project, @selected_user)
     @statuses = IssueStatus.where(:is_closed => false).order(:position)
   end
 
 private
 
-  def get_filtered_issues(trackers, project, user)
+  def get_issues_and_assignees(trackers, project, user)
     issues = Issue.open.where(:project_id => @projects.pluck(:id), 
                               :tracker_id => trackers.pluck(:id))
-    issues = issues.where(:assigned_to_id => user.id) if user
     issues = issues.where(:project_id => project.id) if project
-    issues
-  end
-
-  def get_project_members
-    members = @projects.map { |project| project.users }
-    members.flatten.uniq.sort { |a, b| a.name <=> b.name }
+    assignees = issues.map { |issue| issue.assigned_to }
+    assignees = assignees.flatten.uniq.compact.sort { |a, b| a.name <=> b.name }
+    issues = issues.where(:assigned_to_id => user.id) if user
+    [issues, assignees]
   end
 
   def get_projects
