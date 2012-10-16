@@ -2,10 +2,14 @@
 
 <%= form_tag({}, {:id => 'filter_form', :method => :get}) do %>
   <%= hidden_field_tag 'id', @project.identifier %>
-  Filter on user: <%= select_tag "user", 
-                      options_from_collection_for_select(@users, "login", "name", @selected_user.try(:login)), 
-                      :include_blank => true,
-                      :onchange => "$('#filter_form').submit();" %>
+  Filter on project <%= select_tag "project", 
+                          options_from_collection_for_select(@projects, "identifier", "name", @selected_project.try(:identifier)), 
+                          :include_blank => true,
+                          :onchange => "$('#filter_form').submit();" %> 
+  or user <%= select_tag "user", 
+                options_from_collection_for_select(@users, "login", "name", @selected_user.try(:login)), 
+                :include_blank => true,
+                :onchange => "$('#filter_form').submit();" %>
 <% end %>
 
 <% @trackers.each do |tracker| %>
